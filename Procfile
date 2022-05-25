@@ -1,1 +1,1 @@
-web: gunicorn wsgi:application
+web: gunicorn truyum.wsgi:application --log-file - --log-level debug
