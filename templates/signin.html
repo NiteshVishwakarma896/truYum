@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - truYum</title>
+    <link rel="stylesheet" href="{% static 'style/auth.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
+</head>
+
+<body id="home-bg">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Navbar Brand -->
+        <a href="/" class="navbar-brand">tru<b>Yum</b></a>
+        <!-- Menu Items -->
+        <ul class="navbar-menu">
+            <li class="nav-item">
+                <a href="/signin"><i class="bi bi-box-arrow-in-right padding-right-1"></i>Login</a>
+            </li>
+            <li class="nav-item">
+                <a href="/signup"><i class="bi bi-person-heart padding-right-1"></i>Register</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Section Menu Items  Start-->
+    <section class="menu-items-container">
+        <h2 class="menu-items-header-1">Sign In into <b>truYum</b></h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="width-18">
+                <div class="flex-container">
+                    <label class="font-size-1">Username</label>
+                    <input type="text" name="username" placeholder="Enter your username" />
+                </div>
+                <div class="flex-container">
+                    <label class="font-size-1">Password</label>
+                    <input type="password" name="password" placeholder="Enter your username" />
+                </div>
+                <div class="flex-container">
+                    <button type="submit" class="btn-submit">Sign In</button>
+                </div>
+                <br>
+                {% for message in messages %}
+                    <span class="error">
+                        {{ message }}
+                    </span>
+                {% endfor %}
+            </div>
+        </form>
+    </section>
+    <!-- Section Menu Items  End-->
+    <!-- Footer -->
+    <footer class="footer">
+        <span>Copyright &copy; 2019</span>
+    </footer>
+</body>
+
+</html>

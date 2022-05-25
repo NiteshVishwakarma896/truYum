@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>truYum - Cart Menu Item List</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Navbar Brand -->
+        <a href="/" class="navbar-brand">tru<b>Yum</b></a>
+        <!-- Menu Items -->
+        <ul class="navbar-menu">
+            <li class="nav-item">
+                <a href="/customer/menu" class="nav-link"><i class="bi bi-basket padding-right-1"></i>Menu</a>
+            </li>
+            <li class="nav-item">
+                <a href="/customer/cart" class="nav-link"><i class="bi bi-cart padding-right-1"></i>Cart</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Section Cart  Start-->
+    <section class="menu-items-container">
+        <h1 class="menu-items-header">Cart</h1>
+        {% for message in messages %}
+            <h3 class="text-success">{{ message }}</h3>
+        {% endfor %}
+        <!-- <h3 class="text-success">Item added to Cart Successfully</h3> -->
+        {% if carts %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Free Delivery</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in carts %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.delivery_free|yesno:"Yes,No" }}</td>
+                            <td>Rs {{ item.price }}</td>
+                            <td>
+                                <a href="cart/delete/{{ item.id }}" class="btn-add-to-cart"><i class="bi bi-trash3 padding-right-1"></i>Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h4>No Items in Cart. Use "Add to Cart" option in <a href="/customer/menu">Menu Item List.</a></h4>
+        {% endif %}
+        
+    </section>
+    <!-- Section Cart  End-->
+    <!-- Footer -->
+    <footer class="footer">
+        <span>Copyright &copy; 2019</span>
+    </footer>
+</body>
+
+</html>
